@@ -35,8 +35,6 @@ public class Pessoa
     }
     
     
-
-    
     private string cpf;
 
     public string Nome { get; set; }
@@ -70,5 +68,18 @@ public class Pessoa
             {
                 throw new FormatException ("Formato invalido de cpf!\nCertifique-se que o cpf está no formato xxx.xxx.xxx-xx");
             }
+    }
+
+    public void ListarPessoaCompleto()
+    {
+        Console.WriteLine("Nome: " + Nome);
+        Console.WriteLine("Sobrenome: " + Sobrenome);
+        Console.WriteLine("Nascimento: " + Nascimento);
+        Console.WriteLine("CPF: " + Cpf);
+    }
+
+    public bool MaiorDeIdade()
+    {
+        return RetornaIdade() >= 18;
     }
 }

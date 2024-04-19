@@ -2,7 +2,7 @@ namespace DesafioProjetoHospedagem.Models
 {
     public class Reserva
     {
-        public Pessoa Responsável { get; set; }
+        public Pessoa Responsavel { get; set; }
         public List<Pessoa> Hospedes { get; set; }
         public Suite Suite { get; set; }
         public int DiasReservados { get; set; }
@@ -15,6 +15,16 @@ namespace DesafioProjetoHospedagem.Models
         public Reserva(int diasReservados)
         {
             DiasReservados = diasReservados;
+        }
+
+
+        public Reserva(Pessoa responsavel, List<Pessoa> hospedes, Suite suite, int diasReservados)
+        {
+            Responsavel = responsavel;
+            CadastrarSuite(suite);
+            CadastrarHospedes(hospedes);
+            DiasReservados = diasReservados;
+            HorarioDaReserva = DateTime.Now;
         }
 
         public void CadastrarHospedes(List<Pessoa> hospedes)
@@ -33,15 +43,17 @@ namespace DesafioProjetoHospedagem.Models
             }
         }
 
-        public void CadastrarHospedes()
+        public bool CadastrarHospede(Pessoa p)
         {
-            
+            if(Hospedes.Exists(x => x.Cpf == p.Cpf))
+            {
+                return false;
+            }
+            return true;
         }
 
-        public void CadastraResponsavel(Pessoa responsavel)
-        {
-            
-        }
+
+
 
         public void CadastrarSuite(Suite suite)
         {
